@@ -27,5 +27,5 @@ So, I decided to start a project using her Chromebook, deploying to [Heroku][her
 [heroku]: https://heroku.com
 [circleci]: https://circleci.com
 [forge]: https://files.minecraftforge.net/
-[curseforge] https://minecraft.curseforge.com
+[curseforge]: https://minecraft.curseforge.com
 [cfwidgets]: https://www.cfwidget.com/
