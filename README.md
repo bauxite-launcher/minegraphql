@@ -23,6 +23,7 @@ So, I decided to start a project using her Chromebook, deploying to [Heroku][her
  - [ ] [CurseForge][curseforge] project lookup (possibly using [CitricSquid's amazing API][cfwidgets])
 
 [crouton]: https://github.com/dnschneid/crouton
+[codesandbox]: https://codesandbox.io
 [heroku]: https://heroku.com
 [circleci]: https://circleci.com
 [forge]: https://files.minecraftforge.net/
