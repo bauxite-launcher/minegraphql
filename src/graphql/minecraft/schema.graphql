@@ -1,0 +1,21 @@
+enum MinecraftReleaseChannel {
+  RELEASE
+  SNAPSHOT
+  OLD_ALPHA
+  OLD_BETA
+}
+
+type MinecraftVersion {
+  id: ID!
+  releaseChannel: MinecraftReleaseChannel
+  manifestUrl: String
+  releasedAt: DateTime
+}
+
+type Query {
+  minecraftVersions: [MinecraftVersion]
+  minecraftVersion(id: ID!): MinecraftVersion
+  latestMinecraftVersion(
+    releaseChannel: MinecraftReleaseChannel = RELEASE
+  ): MinecraftVersion
+}
