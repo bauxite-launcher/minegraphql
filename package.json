@@ -1,0 +1,16 @@
+{
+  "name": "minegraphql",
+  "version": "0.0.1",
+  "private": "true",
+  "author": "Jim O'Brien <npm@jimmed.net>",
+  "scripts": {
+    "start": "node server"
+  },
+  "engines": {
+    "node": "10.x.x"
+  },
+  "dependencies": {
+    "graphql": "14.0.2",
+    "apollo-server": "2.2.2"
+  }
+}
