@@ -44,7 +44,12 @@ export async function parseMinecraftVersions(
       manifestUrl: version.url,
       releasedAt: new Date(version.releaseTime),
     }))
-    .sort(dateCompareDesc);
+    .sort(dateCompareDesc)
+    .map((version, index, list) => ({
+      ...version,
+      previousVersion: list[index + 1],
+      nextVersion: list[index - 1],
+    }));
 }
 
 export async function getMinecraftVersions() {

@@ -10,6 +10,8 @@ type MinecraftVersion {
   releaseChannel: MinecraftReleaseChannel
   manifestUrl: String
   releasedAt: DateTime
+  previousVersion: MinecraftVersion
+  nextVersion: MinecraftVersion
 }
 
 type Query {
