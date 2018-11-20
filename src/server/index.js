@@ -4,9 +4,9 @@ import glue from 'schemaglue';
 import { graphqls2s } from 'graphql-s2s';
 import * as context from '../api';
 
-const schemaPath = process.env.NODE_ENV === 'production' ? 'dist' : 'src';
+const jsPath = process.env.NODE_ENV === 'production' ? 'dist' : 'src';
 
-const { schema, resolver } = glue(`${schemaPath}/graphql`);
+const { schema, resolver } = glue(`{graphql,${jsPath}/resolvers}`);
 
 const typeDefs = graphqls2s.transpileSchema(schema);
 
