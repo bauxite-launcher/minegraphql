@@ -10,7 +10,12 @@ const { schema, resolver } = glue(`{graphql,${jsPath}/resolvers}`);
 
 const typeDefs = graphqls2s.transpileSchema(schema);
 
-const server = new ApolloServer({ typeDefs, resolvers: resolver, context });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers: resolver,
+  context,
+  introspection: true,
+});
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ url }) => {
   // eslint-disable-next-line no-console
