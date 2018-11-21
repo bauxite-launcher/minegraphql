@@ -7,8 +7,10 @@
   "scripts": {
     "build": "babel src/ -d dist/",
     "start": "node dist/server",
-    "heroku-postbuild": "npm run build",
-    "dev": "nodemon -e js,graphql --exec babel-node -- src/server"
+    "heroku-postbuild": "yarn run build",
+    "dev": "nodemon -e js,graphql --exec babel-node -- src/server",
+    "type": "flow",
+    "lint": "eslint src/"
   },
   "dependencies": {
     "@babel/cli": "^7.1.5",

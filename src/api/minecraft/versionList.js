@@ -2,11 +2,9 @@
 import dateCompareDesc from 'date-fns/compare_desc';
 import fetch from '../fetch';
 
-const versionManifestUrl = 'https://launchermeta.mojang.com/mc/game/version_manifest.json';
+export type VersionId = string;
 
 type RawReleaseChannel = 'release' | 'snapshot' | 'old_alpha' | 'old_beta';
-type VersionId = string;
-
 type RawResponse = {
   latest: {
     [channel: RawReleaseChannel]: VersionId,
@@ -20,13 +18,23 @@ type RawResponse = {
   }>,
 };
 
-type ReleaseChannel = 'RELEASE' | 'SNAPSHOT' | 'OLD_ALPHA' | 'OLD_BETA';
-
-type MinecraftVersion = {
+export type ReleaseChannel = 'RELEASE' | 'SNAPSHOT' | 'OLD_ALPHA' | 'OLD_BETA';
+export type MinecraftVersion = {
   id: VersionId,
   releaseChannel: ReleaseChannel,
   manifestUrl: string,
   releasedAt: Date,
+  previousVersion?: MinecraftVersion,
+  nextVersion?: MinecraftVersion,
+};
+
+const versionManifestUrl = 'https://launchermeta.mojang.com/mc/game/version_manifest.json';
+
+const releaseChannelMap: { [raw: RawReleaseChannel]: ReleaseChannel } = {
+  release: 'RELEASE',
+  snapshot: 'SNAPSHOT',
+  old_alpha: 'OLD_ALPHA',
+  old_beta: 'OLD_BETA',
 };
 
 export async function fetchMinecraftVersions(): Promise<RawResponse> {
@@ -40,11 +48,11 @@ export async function parseMinecraftVersions(
   return rawVersions.versions
     .map(version => ({
       id: version.id,
-      releaseChannel: version.type.toUpperCase(),
+      releaseChannel: releaseChannelMap[version.type],
       manifestUrl: version.url,
       releasedAt: new Date(version.releaseTime),
     }))
-    .sort(dateCompareDesc)
+    .sort((a, b) => dateCompareDesc(a.releasedAt, b.releasedAt))
     .map((version, index, list) => ({
       ...version,
       previousVersion: list[index + 1],
