@@ -4,8 +4,12 @@ import { fetchJson } from '../fetch';
 
 export type VersionId = string;
 
-type RawReleaseChannel = 'release' | 'snapshot' | 'old_alpha' | 'old_beta';
-type RawResponse = {
+export type RawReleaseChannel =
+  | 'release'
+  | 'snapshot'
+  | 'old_alpha'
+  | 'old_beta';
+export type RawResponse = {
   latest: {
     [channel: RawReleaseChannel]: VersionId,
   },

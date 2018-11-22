@@ -1,11 +1,13 @@
+// @flow
 import { fetchJson } from '../fetch';
-import type { VersionId } from './versionList';
+import type { VersionId, RawReleaseChannel } from './versionList';
 
 type FileDownload = {
   sha1: string,
   url: string,
   size?: number,
   path?: string,
+  id?: string,
 };
 
 type AssetIndex = {
@@ -16,10 +18,52 @@ type AssetIndex = {
   url: string,
 };
 
+type LaunchArgument =
+  | string
+  | {
+      rules: Array<{
+        action: 'allow' | 'deny',
+        features?: { [key: string]: boolean },
+        os?: { name: string, version?: string } | { arch: string },
+      }>,
+      value: string,
+    };
+
+type LibraryDefinition = {
+  name: string,
+  downloads: {
+    artifact: FileDownload,
+    classifiers?: {
+      [key: string]: FileDownload,
+    },
+  },
+  natives?: {
+    [key: string]: FileDownload,
+  },
+};
+
+type ClientOrServer = 'client' | 'server';
+type LaunchArgumentType = 'game' | 'jvm';
+
 type RawVersionManifest = {
   id: VersionId,
-  downloads: { [key: 'client' | 'server']: FileDownload },
+  downloads: { [key: ClientOrServer]: FileDownload },
   assetIndex: AssetIndex,
+  assets: string,
+  arguments: { [key: LaunchArgumentType]: Array<LaunchArgument> },
+  libraries: Array<LibraryDefinition>,
+  logging: {
+    [key: ClientOrServer]: {
+      argument: string,
+      type: string,
+      file: FileDownload,
+    },
+  },
+  mainClass: string,
+  minimumLauncherVersion: number,
+  releaseTime: string,
+  time: string,
+  type: RawReleaseChannel,
 };
 
 type VersionManifest = {

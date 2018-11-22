@@ -9,6 +9,7 @@ export const resolver = {
       args: {},
       { minecraftVersions }: API,
     ) => minecraftVersions.get(),
+
     minecraftVersion: async (
       root: RootValue,
       { id }: { id: String },
@@ -17,6 +18,7 @@ export const resolver = {
       const versions = await minecraftVersions.get();
       return versions.find(version => version.id === id);
     },
+
     latestMinecraftVersion: async (
       root: RootValue,
       { releaseChannel }: { releaseChannel: ReleaseChannel },
