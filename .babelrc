@@ -16,6 +16,7 @@
       {
         "useBuiltIns": true
       }
-    ]
+    ],
+    "@babel/plugin-proposal-export-namespace-from"
   ]
 }

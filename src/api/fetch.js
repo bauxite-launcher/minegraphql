@@ -9,3 +9,5 @@ const cachedFetch = fetch.defaults({
 });
 
 export default cachedFetch;
+
+export const fetchJson = <T>(...args: *): T => cachedFetch(...args).then(res => res.json());
