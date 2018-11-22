@@ -1,3 +1,3 @@
 // @flow
-export * from './minecraft/versionManifest';
-export * from './minecraft/versionList';
+export * as minecraftVersionManifest from './minecraft/versionManifest';
+export * as minecraftVersions from './minecraft/versionList';

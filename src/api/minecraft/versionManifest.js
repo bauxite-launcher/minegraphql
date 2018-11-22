@@ -29,15 +29,11 @@ type VersionManifest = {
   assetIndex: AssetIndex,
 };
 
-export async function fetchMinecraftVersionManifest(
-  manifestUrl: string,
-): Promise<RawVersionManifest> {
+export async function fetch(manifestUrl: string): Promise<RawVersionManifest> {
   return fetchJson(manifestUrl);
 }
 
-export function parseMinecraftVersionManifest(
-  rawManifest: RawVersionManifest,
-): VersionManifest {
+export function parse(rawManifest: RawVersionManifest): VersionManifest {
   return {
     id: rawManifest.id,
     assetIndex: rawManifest.assetIndex,
@@ -46,9 +42,7 @@ export function parseMinecraftVersionManifest(
   };
 }
 
-export async function getMinecraftVersionManifest(
-  manifestUrl: string,
-): Promise<VersionManifest> {
-  const rawManifest = await fetchMinecraftVersionManifest(manifestUrl);
-  return parseMinecraftVersionManifest(rawManifest);
+export async function get(manifestUrl: string): Promise<VersionManifest> {
+  const rawManifest = await fetch(manifestUrl);
+  return parse(rawManifest);
 }

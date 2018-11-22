@@ -7,22 +7,22 @@ export const resolver = {
     minecraftVersions: async (
       root: RootValue,
       args: {},
-      { getMinecraftVersions }: API,
-    ) => getMinecraftVersions(),
+      { minecraftVersions }: API,
+    ) => minecraftVersions.get(),
     minecraftVersion: async (
       root: RootValue,
       { id }: { id: String },
-      { getMinecraftVersions }: API,
+      { minecraftVersions }: API,
     ) => {
-      const versions = await getMinecraftVersions();
+      const versions = await minecraftVersions.get();
       return versions.find(version => version.id === id);
     },
     latestMinecraftVersion: async (
       root: RootValue,
       { releaseChannel }: { releaseChannel: ReleaseChannel },
-      { getMinecraftVersions }: API,
+      { minecraftVersions }: API,
     ) => {
-      const versions = await getMinecraftVersions();
+      const versions = await minecraftVersions.get();
       return versions.find(
         version => version.releaseChannel === releaseChannel,
       );

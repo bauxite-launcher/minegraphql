@@ -7,7 +7,7 @@ export const resolver = {
     manifest: async (
       { manifestUrl }: MinecraftVersion,
       args: {},
-      { getMinecraftVersionManifest }: API,
-    ) => getMinecraftVersionManifest(manifestUrl),
+      { minecraftVersionManifest }: API,
+    ) => minecraftVersionManifest.get(manifestUrl),
   },
 };

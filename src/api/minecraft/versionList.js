@@ -37,11 +37,11 @@ const releaseChannelMap: { [raw: RawReleaseChannel]: ReleaseChannel } = {
   old_beta: 'OLD_BETA',
 };
 
-export async function fetchMinecraftVersions(): Promise<RawResponse> {
+export async function fetch(): Promise<RawResponse> {
   return fetchJson(versionManifestUrl);
 }
 
-export async function parseMinecraftVersions(
+export async function parse(
   rawVersions: RawResponse,
 ): Promise<Array<MinecraftVersion>> {
   return rawVersions.versions
@@ -59,7 +59,7 @@ export async function parseMinecraftVersions(
     }));
 }
 
-export async function getMinecraftVersions() {
-  const rawResponse = await fetchMinecraftVersions();
-  return parseMinecraftVersions(rawResponse);
+export async function get() {
+  const rawResponse = await fetch();
+  return parse(rawResponse);
 }
