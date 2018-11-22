@@ -1,0 +1,6 @@
+type FileDownload {
+  sha1: String
+  url: String
+  size: Int
+  path: String
+}

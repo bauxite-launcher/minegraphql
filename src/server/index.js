@@ -2,7 +2,7 @@
 import { ApolloServer } from 'apollo-server';
 import glue from 'schemaglue';
 import { graphqls2s } from 'graphql-s2s';
-import * as context from '../api';
+import * as api from '../api';
 
 const jsPath = process.env.NODE_ENV === 'production' ? 'dist' : 'src';
 
@@ -13,7 +13,7 @@ const typeDefs = graphqls2s.transpileSchema(schema);
 const server = new ApolloServer({
   typeDefs,
   resolvers: resolver,
-  context,
+  context: api,
   introspection: true,
 });
 

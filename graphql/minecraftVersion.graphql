@@ -1,0 +1,15 @@
+type MinecraftVersionManifest {
+  id: ID!
+  clientDownload: FileDownload
+  serverDownload: FileDownload
+  assetIndex: MinecraftAssetIndex
+}
+
+type MinecraftAssetIndex inherits FileDownload {
+  id: ID!
+  totalSize: Int
+}
+
+extend type MinecraftVersion {
+  manifest: MinecraftVersionManifest
+}
