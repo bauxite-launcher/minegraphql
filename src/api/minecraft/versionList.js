@@ -1,6 +1,6 @@
 // @flow
 import dateCompareDesc from 'date-fns/compare_desc';
-import fetch from '../fetch';
+import { fetchJson } from '../fetch';
 
 export type VersionId = string;
 
@@ -38,8 +38,7 @@ const releaseChannelMap: { [raw: RawReleaseChannel]: ReleaseChannel } = {
 };
 
 export async function fetchMinecraftVersions(): Promise<RawResponse> {
-  const response = await fetch(versionManifestUrl);
-  return response.json();
+  return fetchJson(versionManifestUrl);
 }
 
 export async function parseMinecraftVersions(
